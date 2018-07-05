@@ -2,6 +2,7 @@ package edu.luc.cs271.linkedstack;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 
 public class LinkedStack<E> implements IStack<E> {
@@ -13,32 +14,45 @@ public class LinkedStack<E> implements IStack<E> {
 
   @Override
   public E push(final E obj) {
-    // TODO
-    return null;
+    top = new Node<>(obj,top);
+    return obj;
   }
 
   @Override
   public E peek() {
-    // TODO
-    return null;
+    if(isEmpty()){
+      throw new NoSuchElementException();
+    }
+    else {
+      return top.data;
+    }
   }
 
   @Override
   public E pop() {
-    // TODO
-    return null;
+    if(isEmpty()){
+      throw new NoSuchElementException();
+    }
+    else{
+      E result = top.data;
+      top = top.next;
+      return result;
+    }
   }
 
   @Override
   public boolean isEmpty() {
-    // TODO
-    return false;
+    return top == null;
   }
 
   @Override
   public List<E> asList() {
-    // TODO implement using an ArrayList.  Populate the ArrayList with the stack values, without deconstructing the stack!
-    // TODO add any instance variable(s) required to support this
-    return null;
+      Node<E> currentNode = top;
+      ArrayList<E> myList = new ArrayList<>();
+      while (currentNode != null) {
+        myList.add(currentNode.data);
+        currentNode = currentNode.next;
+      }
+      return myList;
   }
 }

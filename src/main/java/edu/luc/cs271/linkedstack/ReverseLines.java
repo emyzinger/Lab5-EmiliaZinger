@@ -5,18 +5,15 @@ import java.util.Scanner;
 public class ReverseLines {
 
   public static void main(final String[] args) {
-    // TODO read successive input lines until EOF, then print out in reverse order
-
-
-
     final Scanner input = new Scanner(System.in);
+    LinkedStack reverseLine = new LinkedStack();
     while (input.hasNextLine()) {
       final String line = input.nextLine();
-
-
-
+      reverseLine.push(line);
     }
-
+    while (!reverseLine.isEmpty()){
+      System.out.println(reverseLine.pop());
+    }
 
 
   }
